@@ -3,27 +3,32 @@ const fs = require("fs").promises;
 
 const contactsPath = path.resolve("./db/contacts.json");
 
+console.log(contactsPath);
+
 function listContacts() {
-    fs.readFile("contscts.json")
-        .then((data) => console.log(data.toString()))
-        .catch((err) => console.log(err.message));
+  fs.readFile(contactsPath)
+    .then((data) => console.log(data.toString()))
+    .catch((err) => console.log(err.message));
 }
 
+console.log(listContacts());
+console.log(123)
+
 function getContactById(contactId) {
-    // ...твій код
+  // ...твій код
 }
 
 function removeContact(contactId) {
-    // ...твій код
+  // ...твій код
 }
 
 function addContact(name, email, phone) {
-    // ...твій код
+  // ...твій код
 }
 
 module.exports = {
-    listContacts,
-    getContactById,
-    removeContact,
-    addContact,
+  listContacts,
+  getContactById,
+  removeContact,
+  addContact,
 };
