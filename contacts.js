@@ -11,11 +11,8 @@ function listContacts() {
     .catch((err) => console.log(err.message));
 }
 
-console.log(listContacts());
-console.log(123)
-
 function getContactById(contactId) {
-  // ...твій код
+  fs.readFile("./db/contacts.json").then((data) => console.log(data.toString()))
 }
 
 function removeContact(contactId) {
