@@ -5,6 +5,7 @@ const {
   addContact,
 } = require("./contacts");
 const { Command } = require("commander");
+
 const program = new Command();
 program
   .option("-a, --action <type>", "choose action")
@@ -20,7 +21,8 @@ const argv = program.opts();
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
-      await listContacts();
+      const contacts = await listContacts();
+      console.table(contacts);
       break;
 
     case "get":
