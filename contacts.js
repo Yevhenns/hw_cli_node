@@ -18,6 +18,7 @@ async function getContactById(contactId) {
   try {
     const array = await listContacts();
     const contactById = array.find((obj) => obj.id === contactId);
+    console.log(contactById);
     return contactById;
   } catch {
     (err) => console.log(err.message);
