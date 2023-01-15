@@ -1,5 +1,6 @@
 const path = require("path");
 const fs = require("fs").promises;
+const { v4: uuidv4 } = require("uuid");
 
 const contactsPath = path.resolve("./db/contacts.json");
 
@@ -27,16 +28,23 @@ async function removeContact(contactId) {
   try {
     const array = await listContacts();
     const newArray = array.filter((item) => item.id !== contactId);
-    console.log(newArray);
+    await fs.writeFile(contactsPath, JSON.stringify(newArray));
     return newArray;
   } catch {
     (err) => console.log(err.message);
   }
 }
-removeContact("10");
 
-function addContact(name, email, phone) {
-  // ...твій код
+async function addContact(name, email, phone) {
+  try {
+    const array = await listContacts();
+    const newContact = { id: uuidv4(), name, email, phone };
+    const newArray = [...array, newContact];
+    await fs.writeFile(contactsPath, JSON.stringify(newArray));
+    return newArray;
+  } catch {
+    (err) => console.log(err.message);
+  }
 }
 
 module.exports = {
