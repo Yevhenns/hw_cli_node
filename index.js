@@ -17,23 +17,22 @@ program.parse(process.argv);
 
 const argv = program.opts();
 
-// TODO: рефакторить
-function invokeAction({ action, id, name, email, phone }) {
+async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
-      // ...
+      await listContacts();
       break;
 
     case "get":
-      // ... id
+      await getContactById(id);
       break;
 
     case "add":
-      // ... name email phone
+      await addContact(name, email, phone);
       break;
 
     case "remove":
-      // ... id
+      await removeContact(id);
       break;
 
     default:
